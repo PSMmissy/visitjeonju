@@ -2,6 +2,7 @@ package com.example.visit;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,14 +20,13 @@ public class MainActivity extends AppCompatActivity {
     HorizontalScrollView scrollView;
     boolean isInit;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        isInit = true;
 
+        isInit = true;
         layout=findViewById(R.id.scroll_layout);
         scrollView = findViewById(R.id.scrollview);
     }
@@ -35,15 +35,23 @@ public class MainActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
+
+
         if (isInit) {
             isInit = false;
-            int but = (scrollView.getWidth() - (int) dpToPx(this, 2)) / 3;
+            int but = (scrollView.getWidth() - (int) dpToPx(this, 1)) / 3;
             int ba = (scrollView.getHeight()/3);
             Log.e("but", "layout " + scrollView.getWidth() + " " + "but " + but);
+
+
             for (int i = 0; i < 9; i++) {
                 if (i % 2 == 0) {
                     Button button = new Button(this);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(but, LinearLayout.LayoutParams.MATCH_PARENT);
+                    Typeface typeface = getResources().getFont(R.font.notosanscjkkr_medium);
+                    button.setTypeface(typeface);
+                    button.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                    button.setPadding(0,0,0,0);
                     if(i==0){
                         button.setText("전시/공연");
                     }
